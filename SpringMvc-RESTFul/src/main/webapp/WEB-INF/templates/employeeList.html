@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>employeeList</title>
+<!--  从网络导入vue-->
+<!--  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>-->
+    <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+</head>
+<body>
+    <table>
+      <tr>
+          <th colspan="5">Employee Info</th>
+      </tr>
+      <tr>
+          <td>id</td>
+          <td>lastName</td>
+          <td>email</td>
+          <td>gender</td>
+        <td>options(<a th:href="@{/employee_add}">添加员工</a>)</td>
+      </tr>
+      <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.gender}"></td>
+        <td>
+<!--            这种拼接的才能正确显示id数字-->
+          <a class="deleteA" @click="deleteEmployee" th:href="@{'/employee/'+${employee.id}}">delete</a>
+          <a th:href="@{'/employee_update/'+${employee.id}}">update</a>
+        </td>
+      </tr>
+    </table>
+<form id="delete" method="post">
+    <!-- HiddenHttpMethodFilter要求：必须传输_method请求参数，并且值为最终的请求方式 -->
+<!--    上面那个看源码可以知道HiddenHttpMethodFilter会通过request.getParameters("_method")的形式来查看链接中_method的属性值，-->
+<!--    然后直接大写赋值给method，所以在控制器里面就能够匹配到DELETE，不然在前端传过来的方法中除了用ajax，就只有get和post两种方式-->
+    <input type="hidden" name="_method" value="delete">
+</form>
+<script type="text/javascript">
+    var vue=new Vue({
+        el:".deleteA",
+        methods:{
+            deleteEmployee:function (event) {
+              //阻止超链接的默认跳转行为
+              event.preventDefault();
+              var delete_form= document.getElementById("delete");
+              // event表示当前出触发的事件对象，event.target表示触发事件的元素对象这里也就是a标签
+              delete_form.action=event.target.href;
+              // 提交表单
+              delete_form.submit();
+            }
+        }
+    })
+</script>
+
+    <a th:href="@{/}">返回首页</a>
+</body>
+</html>

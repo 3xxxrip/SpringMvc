@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h2>首页</h2>
+<p th:text="${hello}"></p>
+
+<a th:href="@{/testModelAndView}">访问testModelAndView</a>
+<p th:text="${testModelAndView}"></p>
+
+<a th:href="@{/testModel}">访问testModel</a>
+<p th:text="${testModel}"></p>
+
+<a th:href="@{/test_view}">访问test_view页面</a>
+
+<form th:action="@{/success}" method="post">
+    <input type="hidden" name="_method" placeholder="方法" value="put">
+    <input type="text" name="username" placeholder="username"/>
+    <input type="submit">
+</form>
+</body>
+</html>

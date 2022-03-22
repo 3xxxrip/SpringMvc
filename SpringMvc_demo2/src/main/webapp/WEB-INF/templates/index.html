@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+<a th:href="@{success}">跳转success页面</a><br/>
+<a th:href="@{target/200105}">跳转target页面</a>
+<form th:action="@{/target}" method="get">
+<!--<input type="text" name="username">-->
+<input type="password" name="password">
+<input type="submit">
+</form>
+</body>
+</html>

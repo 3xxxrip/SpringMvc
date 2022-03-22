@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>首页</title>
+  <script type="text/javascript" th:src="@{/static/js/vue.js}"></script>
+  <script type="text/javascript" th:src="@{/static/js/axios.min.js}"></script>
+</head>
+<body>
+<p>测试testRequestBody</p>
+<form th:action="@{/testRequestBody}" method="post">
+  姓名:<input type="text" name="username"><br/>
+  密码:<input type="password" name="password"><br/>
+  <input type="submit">
+</form>
+
+<a th:href="@{/testResponseUser}">测试testResponseUser</a><br/>
+
+<a th:href="@{/file}">测试下载页面</a>
+
+
+
+</body>
+</html>
